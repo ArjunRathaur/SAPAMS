@@ -38,6 +38,8 @@ class User():
         A list of IDs of the courses the user has access to
     ID : str
         The user object's UUID.
+    permissionLevel : None
+        Dictates what functionality is available when interacting with SAPAMS. To be set by Teacher/Student classes which inherit this class.
 
 	Methods
 	-------
@@ -47,7 +49,7 @@ class User():
 
     def __init__(self, username, password, firstName, lastName, email, courseIDs=list(), ID=None):
         '''
-		Constructor to build a user object
+		Constructor to build a User object
 		
 		If this object is not being loaded from the database, a unique ID will be generated automatically.
 		
@@ -115,7 +117,7 @@ class User():
         
 		Returns
 		-------
-		boolean
+		bool
             True if the email succeeds, false if the email fails.
 
 		'''
@@ -164,7 +166,7 @@ class Teacher(User):
 
     def __init__(self, username, password, firstName, lastName, email, prefix, courseIDs=list(), ID=None):
         '''
-		Constructor to build a teacher object
+		Constructor to build a Teacher object
 		
 		If this object is not being loaded from the database, a unique ID will be generated automatically.
 		
@@ -237,7 +239,7 @@ class Student(User):
 	'''
     def __init__(self, username, password, firstName, lastName, email, studentNumber, courseIDs=list(), ID=None):
         '''
-		Constructor to build a student object
+		Constructor to build a Student object
 		
 		If this object is not being loaded from the database, a unique ID will be generated automatically.
 		
@@ -342,7 +344,7 @@ class Course():
 
     def __init__(self, courseCode, courseName, studentIDs=list(), teacherIDs=list(), assignmentIDs=list(), ID=None):
         '''
-		Constructor to build a student object
+		Constructor to build a Course object
 		
 		If this object is not being loaded from the database, a unique ID will be generated automatically.
 		

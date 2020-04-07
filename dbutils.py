@@ -6,10 +6,11 @@
 # Updated:     2020-04-07
 #-----------------------------------------------------------------------------
 
+# import classes for saving/loading
 from classes import Assignment, AssignmentSubmission, Course, Dispute, DisputeResponse, Student, Teacher 
-import pymongo
 
 # Saving and loading setup
+import pymongo
 client = pymongo.MongoClient("mongodb+srv://SAPAMS:SAPAMS@maincluster-lo4ne.mongodb.net/test?retryWrites=true&w=majority")
 db = client["objects"]
 
