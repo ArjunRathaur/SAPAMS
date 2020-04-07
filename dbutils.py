@@ -1,3 +1,11 @@
+#-----------------------------------------------------------------------------
+# Name:        Database Utilities (dbutils.py)
+# Purpose:     Make saving/loading classes in classes.py to MongoDB easier
+# Author:      Arjun Rathaur
+# Created:     2020-03-29
+# Updated:     2020-04-07
+#-----------------------------------------------------------------------------
+
 from classes import Assignment, AssignmentSubmission, Course, Dispute, DisputeResponse, Student, Teacher 
 import pymongo
 
