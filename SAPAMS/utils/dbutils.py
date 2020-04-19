@@ -401,3 +401,4 @@ def resolveIDList(listToResolve, classType):
             resolvedList.append(result)
     else:
         raise TypeError("Invalid classType specified!")
+    return resolvedList
