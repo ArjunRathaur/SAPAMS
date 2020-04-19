@@ -319,3 +319,85 @@ def loadTeacher(ID):
         return False
     else:
         return Teacher(document["username"], document["password"], document["firstName"], document["lastName"], document["email"], document["prefix"], document["courseIDs"], document["ID"])
+
+def resolveIDList(listToResolve, classType):
+    '''
+    Attempts to resolve a list of IDs and return a list of classes that match said IDs.
+
+    When dealing with some classes, for example Courses, certain attributes are simply ID lists to create associations between objects rather than lists of objects.
+
+    Parameters
+    ----------
+    listToResolve : list
+        The list of IDs to resolve.
+    classType : str
+        The class type that the IDs in the listToResolve are for.
+        Available types are 'Assignment', 'AssignmentSubmission', 'Course', 'Dispute', 'DisputeResponse', 'Student', and 'Teacher'.
+
+    Returns
+    -------
+    List of objects
+        The resolved list of objects of class specified in parameter classType.
+
+    Raises
+    ------
+    KeyError
+        If an object cannot be found for any ID in the listToResolve.
+    TypeError
+        If either parameter is not of the aforementioned type
+    TypeError
+        If the classType parameter does not specify a valid type.
+    '''
+    
+    # Parameter checks
+    if not isinstance(listToResolve, list):
+        raise TypeError("Attempted to resolve a parameter which is not a list.")
+    if not isinstance(classType, str):
+        raise TypeError("Invalid classType specified (expected a string)")
+
+    # Now we actually try resolving the IDs
+    resolvedList = []
+    if classType == "Assignment":
+        for ID in listToResolve:
+            result = loadAssignment(str(ID))
+            if not result:
+                raise KeyError("Could not find an Assignment object with ID " + str(ID))
+            resolvedList.append(result)
+    elif classType == "AssignmentSubmission":
+        for ID in listToResolve:
+            result = loadAssignmentSubmission(str(ID))
+            if not result:
+                raise KeyError("Could not find an AssignmentSubmission object with ID " + str(ID))
+            resolvedList.append(result)
+    elif classType == "Course":
+        for ID in listToResolve:
+            result = loadCourse(str(ID))
+            if not result:
+                raise KeyError("Could not find a Course object with ID " + str(ID))
+            resolvedList.append(result)
+    elif classType == "Dispute":
+        for ID in listToResolve:
+            result = loadDispute(str(ID))
+            if not result:
+                raise KeyError("Could not find a Dispute object with ID " + str(ID))
+            resolvedList.append(result)
+    elif classType == "DisputeResponse":
+        for ID in listToResolve:
+            result = loadDisputeResponse(str(ID))
+            if not result:
+                raise KeyError("Could not find a DisputeResponse object with ID " + str(ID))
+            resolvedList.append(result)
+    elif classType == "Student":
+        for ID in listToResolve:
+            result = loadStudent(str(ID))
+            if not result:
+                raise KeyError("Could not find a Student object with ID " + str(ID))
+            resolvedList.append(result)
+    elif classType == "Teacher":
+        for ID in listToResolve:
+            result = loadTeacher(str(ID))
+            if not result:
+                raise KeyError("Could not find a Teacher object with ID " + str(ID))
+            resolvedList.append(result)
+    else:
+        raise TypeError("Invalid classType specified!")
