@@ -719,7 +719,10 @@ class AssignmentSubmission():
 
         if not isinstance(grade, (float, int)):
             raise TypeError("Expected grade to be of type float or int.")
-        self.grade = grade
+        self.grade = int(grade) 
+        # we want to store grades as whole percentage values, 
+        # so we don't have large amounts of leading/trailing decimals 
+        # from floating point round errors
 
 # Dispute
 class Dispute():

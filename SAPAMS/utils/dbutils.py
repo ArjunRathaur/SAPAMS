@@ -7,7 +7,8 @@
 #-----------------------------------------------------------------------------
 
 # import classes for saving/loading
-from classes import Assignment, AssignmentSubmission, Course, Dispute, DisputeResponse, Student, Teacher 
+
+from classes import *
 
 # Saving and loading setup
 import pymongo
