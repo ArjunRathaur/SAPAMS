@@ -15,8 +15,8 @@ import pymongo
 client = pymongo.MongoClient("mongodb+srv://SAPAMS:SAPAMS@maincluster-lo4ne.mongodb.net/test?retryWrites=true&w=majority")
 db = client["objects"]
 
-assignmentCollection = db["Assignment"]
-assignmentSubmissionCollection = db["AssignmentSubmission"]
+assignmentCollection = db["Assignments"]
+assignmentSubmissionCollection = db["AssignmentSubmissions"]
 courseCollection = db["Courses"]
 disputeCollection = db["Disputes"]
 disputeResponseCollection = db["DisputeResponses"]
@@ -44,7 +44,7 @@ def saveAssignment(assignment):
     '''
     if not isinstance(assignment, Assignment):
         raise TypeError("Attempted to save an object which was not an Assignment.")
-    assignmentCollection.insert_one(vars(assignment))
+    assignmentCollection.replace_one({"ID": assignment.ID}, vars(assignment))
 
 def loadAssignment(ID):
     '''
@@ -86,7 +86,7 @@ def saveAssignmentSubmission(assignmentSubmission):
     '''
     if not isinstance(assignmentSubmission, AssignmentSubmission):
         raise TypeError("Attempted to save an object which was not an AssignmentSubmission.")
-    assignmentSubmissionCollection.insert_one(vars(assignmentSubmission))
+    assignmentSubmissionCollection.replace_one({"ID": assignmentSubmission.ID}, vars(assignmentSubmission))
 
 def loadAssignmentSubmission(ID):
     '''
@@ -128,7 +128,7 @@ def saveCourse(course):
     '''
     if not isinstance(course, Course):
         raise TypeError("Attempted to save an object which was not a Course.")
-    courseCollection.insert_one(vars(course))
+    courseCollection.replace_one({"ID": course.ID}, vars(course))
 
 def loadCourse(ID):
     '''
@@ -171,7 +171,7 @@ def saveDispute(dispute):
     '''
     if not isinstance(dispute, Dispute):
         raise TypeError("Attempted to save an object which was not a Dispute.")
-    disputeCollection.insert_one(vars(dispute))
+    disputeCollection.replace_one({"ID": dispute.ID}, vars(dispute))
 
 def loadDispute(ID):
     '''
@@ -213,7 +213,7 @@ def saveDisputeResponses(disputeResponse):
     '''
     if not isinstance(disputeResponse, DisputeResponse):
         raise TypeError("Attempted to save an object which was not a DisputeResponse.")
-    disputeResponseCollection.insert_one(vars(disputeResponse))
+    disputeResponseCollection.replace_one({"ID": disputeResponse.ID}, vars(disputeResponse))
 
 
 def loadDisputeResponse(ID):
@@ -257,7 +257,7 @@ def saveStudent(student):
     '''
     if not isinstance(student, Student):
         raise TypeError("Attempted to save an object which was not a student.")
-    studentCollection.insert_one(vars(student))
+    studentCollection.replace_one({"ID": student.ID}, vars(student))
 
 def loadStudent(ID):
     '''
@@ -299,7 +299,7 @@ def saveTeacher(teacher):
     '''
     if not isinstance(teacher, Teacher):
         raise TypeError("Attempted to save an object which was not a Teacher.")
-    teacherCollection.insert_one(vars(teacher))
+    teacherCollection.replace_one({"ID": teacher.ID}, vars(teacher))
 
 def loadTeacher(ID):
     '''

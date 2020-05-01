@@ -573,8 +573,8 @@ class Assignment():
             raise TypeError("expected intensity to be of type int.")
         if not isinstance(dates, list):
             raise TypeError("Expected intensity to be of type list")
-        if not isinstance(courseID, int):
-            raise TypeError("Expected courseID to be of type int.")
+        if not isinstance(courseID, str):
+            raise TypeError("Expected courseID to be of type str.")
         if not isinstance(submissionIDs, list):
             raise TypeError("Expected submissionIDs to be of type list.")
         if not isinstance(disputeIDs, list):
@@ -679,8 +679,8 @@ class AssignmentSubmission():
 			If any passed parameters are not of the aforementioned types.
 		'''
         # Check parameter types
-        if not isinstance(submitterID, int):
-            raise TypeError("Expected submitterID to be of type int.")
+        if not isinstance(submitterID, str):
+            raise TypeError("Expected submitterID to be of type str.")
         if not isinstance(timeStamp, datetime.datetime):
             raise TypeError("Expected timeStamp to be of type datetime.")
         if not isinstance(grade, (float, int)):
@@ -775,10 +775,10 @@ class Dispute():
 			If any passed parameters are not of the aforementioned types.
 		'''
         # Check parameter types
-        if not isinstance(creatorID, int):
-            raise TypeError("Expected creatorID to be of type int.")
-        if not isinstance(handlerID, int):
-            raise TypeError("Expected handlerID to be of type int.")
+        if not isinstance(creatorID, str):
+            raise TypeError("Expected creatorID to be of type str.")
+        if not isinstance(handlerID, str):
+            raise TypeError("Expected handlerID to be of type str.")
         if not isinstance(responseIDs, list):
             raise TypeError("Expected responseIDs to be of type list.")
         if not isinstance(status, bool):
@@ -873,8 +873,8 @@ class DisputeResponse():
 			If any passed parameters are not of the aforementioned types.
 		'''
         # Check parameter types
-        if not isinstance(authorID, int):
-            raise TypeError("Expected authorID to be of type int.")
+        if not isinstance(authorID, str):
+            raise TypeError("Expected authorID to be of type str.")
         if not isinstance(content, str):
             raise TypeError("Expected content to be of type str.")
 

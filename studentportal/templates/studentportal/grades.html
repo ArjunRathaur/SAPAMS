@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Unsorted grades</h1>
+        {% for assignment in assignmentSubmissions %}
+            <h1>{{assignment.name}}</h1>
+            <p>{{assignment.grade}}</p>
+        {% endfor %}
+        <h1>Sorted grades</h1>
+        {% for assignment in assignmentSubmissionsSorted %}
+            <h1>{{assignment.name}}</h1>
+            <p>{{assignment.grade}}</p>
+        {% endfor %}
+    </body>
+</html>
