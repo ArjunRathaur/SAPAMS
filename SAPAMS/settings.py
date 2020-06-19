@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'mainpage.apps.MainpageConfig',
     'studentportal.apps.StudentportalConfig',
     'teacherportal.apps.TeacherportalConfig',
     'django.contrib.admin',

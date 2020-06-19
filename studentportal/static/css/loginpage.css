@@ -1,0 +1,123 @@
+body, html {
+    margin: 0;
+    height: 100%;
+    font-family: "Segoe UI", Georgia, "Times New Roman", Times, serif;
+  
+    /* Remove Scroll Bar IE/FireFox*/
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  /* Remove Scroll Bar Chrome/Safari*/
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* IDS */
+  
+  #error {
+    color: #e74c3c;
+  }
+
+  #intro {
+    position: fixed;
+    z-index: 1;
+    width: 800px;
+    height: 300px;
+    top: 30%;
+    left: 50%;
+    margin-top: -130px; /* Negative half of height. */
+    margin-left: -415px; /* Negative half of width. */
+    text-align: center;
+    color: white;
+  }
+  
+  #intro h2 {
+    font-size: 120px;
+    margin: 10px 0;
+  }
+  
+  #intro h3 {
+    font-size: 32px;
+    margin: 16px;
+  }
+
+  #intro p {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+  
+  #intro .btn {
+    margin: 3vh;
+  }
+  
+  /* CLASSES */
+  
+  /* Buttons */
+  .abtn {
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background: none;
+    padding: 10px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.6s;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .abtn:hover {
+    color: #0abde3;
+  }
+  
+  .abtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #fff;
+    z-index: -1;
+    transition: 0.6s;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+  }
+  
+  .abtn:hover::before {
+    height: 180%;
+  }
+  
+  /* Landing specific */
+  .overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.3;
+  }
+  
+  .background {
+    background-image: url('../images/login-background.jpg');
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .centered {
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+  }
+
+  .transparent-input {
+    background-color: transparent !important;
+    color: white !important;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:white !important;
+    opacity: 1 !important; /* Firefox */
+  }

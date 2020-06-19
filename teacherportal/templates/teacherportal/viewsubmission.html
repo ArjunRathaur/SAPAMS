@@ -1,0 +1,55 @@
+{% extends "teacherportal/base.html" %}
+
+{% block content %}
+    <br><br>
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">Submission by {{authorName}}</h4><br>
+            <p>USER WROTE: <br><br>"{{submission.content.0}}"</p>
+        </div>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">Current Grade: {{grade}}</h4><br>
+        </div>
+    </div>
+    <form action="#" method="POST" class="w-25" style="border: 0px solid;">
+        {% csrf_token %}
+            <div class="form-group col-md-12 col-md-offset-4">
+                {{ form.as_p }}
+            </div>
+        <div class="text-center">
+            <button type="submit" class="bbtn" name="submitbtn">Grade</button>
+        </div>
+        
+        <div></div>
+    </form>
+    {% if disputes %}
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">Disputes</h4><br>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <ul class="list-group">
+            {% for dispute in disputes %}
+                <div class="row justify-content-center">
+                    <div class="my-auto">
+                        <a href="{% url 'teacher-viewdispute' dispute.ID %}" class="list-group-item" style="padding: 2vh 50vh;">
+                            Dispute #{{ dispute.ID }}
+                        </a>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">No Disputes</h4><br>
+        </div>
+    </div>
+    {% endif %}
+{% endblock content %}

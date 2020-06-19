@@ -1,0 +1,27 @@
+{% extends "teacherportal/base.html" %}
+
+{% block content %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>Courses</h2><br>
+    </div>
+    <br> <br>
+    <div class="row justify-content-center">
+        <h4>Create New</h4><br>
+    </div>
+        <form action="#" method="POST" class="w-25" style="border: 0px solid;">
+            {% csrf_token %}
+                <div class="form-group col-md-12 col-md-offset-4">
+                    {{ form.as_p }}
+                </div>
+            {% if error %}
+                <p id="error", style="padding-left: 2vh;">{{error}}</p>
+            {% endif %}
+            <div class="text-center">
+                <button type="submit" class="bbtn" name="submitbtn">Create</button>
+            </div>
+            
+            <div></div>
+        </form>
+
+{% endblock content %}

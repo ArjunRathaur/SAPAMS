@@ -7,8 +7,14 @@
 #-----------------------------------------------------------------------------
 
 # import classes for saving/loading
-
-from .classes import *
+# pylint: disable=relative-beyond-top-level, undefined-variable
+from .assignment import Assignment
+from .assignmentsubmission import AssignmentSubmission
+from .course import Course
+from .dispute import Dispute
+from .disputeresponse import DisputeResponse
+from .student import Student
+from .teacher import Teacher
 
 # Saving and loading setup
 import pymongo
@@ -44,7 +50,10 @@ def saveAssignment(assignment):
     '''
     if not isinstance(assignment, Assignment):
         raise TypeError("Attempted to save an object which was not an Assignment.")
-    assignmentCollection.replace_one({"ID": assignment.ID}, vars(assignment))
+    if loadAssignment(assignment.ID) == False:
+        assignmentCollection.insert_one(vars(assignment))
+    else:
+        assignmentCollection.replace_one({"ID": assignment.ID}, vars(assignment))
 
 def loadAssignment(ID):
     '''
@@ -86,7 +95,10 @@ def saveAssignmentSubmission(assignmentSubmission):
     '''
     if not isinstance(assignmentSubmission, AssignmentSubmission):
         raise TypeError("Attempted to save an object which was not an AssignmentSubmission.")
-    assignmentSubmissionCollection.replace_one({"ID": assignmentSubmission.ID}, vars(assignmentSubmission))
+    if loadAssignmentSubmission(assignmentSubmission.ID) == False:
+        assignmentSubmissionCollection.insert_one(vars(assignmentSubmission))
+    else:
+        assignmentSubmissionCollection.replace_one({"ID": assignmentSubmission.ID}, vars(assignmentSubmission))
 
 def loadAssignmentSubmission(ID):
     '''
@@ -128,7 +140,10 @@ def saveCourse(course):
     '''
     if not isinstance(course, Course):
         raise TypeError("Attempted to save an object which was not a Course.")
-    courseCollection.replace_one({"ID": course.ID}, vars(course))
+    if loadCourse(course.ID) == False:
+        courseCollection.insert_one(vars(course))
+    else:
+        courseCollection.replace_one({"ID": course.ID}, vars(course))
 
 def loadCourse(ID):
     '''
@@ -171,7 +186,10 @@ def saveDispute(dispute):
     '''
     if not isinstance(dispute, Dispute):
         raise TypeError("Attempted to save an object which was not a Dispute.")
-    disputeCollection.replace_one({"ID": dispute.ID}, vars(dispute))
+    if loadDispute(dispute.ID) == False:
+        disputeCollection.insert_one(vars(dispute))
+    else:
+        disputeCollection.replace_one({"ID": dispute.ID}, vars(dispute))
 
 def loadDispute(ID):
     '''
@@ -191,9 +209,9 @@ def loadDispute(ID):
     if document == None:
         return False
     else:
-        return Dispute(document["creatorID"], document["handlerID"], document["responseIDs"], document["ID"])
+        return Dispute(document["creatorID"], document["handlerID"], document["responseIDs"], document['status'], document["ID"])
 
-def saveDisputeResponses(disputeResponse):
+def saveDisputeResponse(disputeResponse):
     '''
     Saves an DisputeResponse object to MongoDB.
 
@@ -213,7 +231,10 @@ def saveDisputeResponses(disputeResponse):
     '''
     if not isinstance(disputeResponse, DisputeResponse):
         raise TypeError("Attempted to save an object which was not a DisputeResponse.")
-    disputeResponseCollection.replace_one({"ID": disputeResponse.ID}, vars(disputeResponse))
+    if loadDisputeResponse(disputeResponse.ID) == False:
+        disputeResponseCollection.insert_one(vars(disputeResponse))
+    else:
+        disputeResponseCollection.replace_one({"ID": disputeResponse.ID}, vars(disputeResponse))
 
 
 def loadDisputeResponse(ID):
@@ -257,7 +278,10 @@ def saveStudent(student):
     '''
     if not isinstance(student, Student):
         raise TypeError("Attempted to save an object which was not a student.")
-    studentCollection.replace_one({"ID": student.ID}, vars(student))
+    if loadStudent(student.ID) == False:
+        studentCollection.insert_one(vars(student))
+    else:
+        studentCollection.replace_one({"ID": student.ID}, vars(student))
 
 def loadStudent(ID):
     '''
@@ -299,7 +323,10 @@ def saveTeacher(teacher):
     '''
     if not isinstance(teacher, Teacher):
         raise TypeError("Attempted to save an object which was not a Teacher.")
-    teacherCollection.replace_one({"ID": teacher.ID}, vars(teacher))
+    if loadTeacher(teacher.ID) == False:
+        teacherCollection.insert_one(vars(teacher))
+    else:
+        teacherCollection.replace_one({"ID": teacher.ID}, vars(teacher))
 
 def loadTeacher(ID):
     '''
@@ -403,3 +430,44 @@ def resolveIDList(listToResolve, classType):
     else:
         raise TypeError("Invalid classType specified!")
     return resolvedList
+
+def loadStudentByEmail(email):
+    '''
+    Loads a Student object from MongoDB by email query.
+
+    Parameters
+    ----------
+    email : str
+        The email of the Student to load
+
+    Returns
+    -------
+    Student or False
+        The loaded student. Returns False if no document is found matching the ID.
+    '''
+    document = studentCollection.find_one({"email": email})
+    if document == None:
+        return False
+    else:
+        return Student(document["username"], document["password"], document["firstName"], document["lastName"], document["email"], document["studentNumber"],document["courseIDs"], document["ID"])
+
+def loadTeacherByEmail(email):
+    '''
+    Loads a Teacher object from MongoDB by email query.
+
+    Parameters
+    ----------
+    email : str
+        The email of the Teacher to load
+
+    Returns
+    -------
+    Teacher or False
+        The loaded Teacher. Returns False if no document is found matching the ID.
+    '''
+    document = teacherCollection.find_one({"email": email})
+    if document == None:
+        return False
+    else:
+        return Teacher(document["username"], document["password"], document["firstName"], document["lastName"], document["email"], document["prefix"], document["courseIDs"], document["ID"])
+

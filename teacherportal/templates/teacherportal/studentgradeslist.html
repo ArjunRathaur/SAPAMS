@@ -1,0 +1,21 @@
+{% extends "teacherportal/base.html" %}
+
+{% block content %}
+{% if students %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4>Student Grades</h4> <br/>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <ul class="list-group">
+            {% for student in students %}
+                <a href="{% url 'teacher-viewstudentgrades' student.ID %}" class="list-group-item" style="padding: 2vh 50vh;">{{ student.firstName }} {{student.lastName}}</a>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <h2 class="centred">You do not have any students.</h2>
+{% endif %}
+
+{% endblock content %}

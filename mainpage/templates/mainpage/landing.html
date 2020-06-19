@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SAPAMS - Landing</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mainpage.css' %}" />
+    </head>
+    <body>
+        <div id="intro">
+            <h2>SAPAMS</h2>
+            <p>Select which login portal you would like to use</p>
+            <button onclick="location.href='/student/'" class="btn" name="spbtn">Student Portal</button>
+            <button onclick="location.href='/teacher/'"class="btn" name="tpbtn">Teacher Portal</button>
+          </div>
+          <div class="background">
+            <div class="overlay"></div>
+          </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "studentportal/base.html" %}
+
+{% block content %}
+{% if course %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4>{{course.courseCode}} - {{course.courseName}}</h4><br/>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <ul class="list-group-flush">
+            <li class="list-group-item"></li>
+            {% for assignment in assignments %}
+                <a href="{% url 'student-viewassignment' assignment.ID %}" class="list-group-item" style="padding: 2vh 50vh;">{{ assignment.name }}</a>
+            {% endfor %}
+            <li class="list-group-item"></li>
+        </ul>
+    </div>
+{% else %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4 class="centred error">{{error}}</h4>
+    </div>
+    
+{% endif %}
+
+    
+
+{% endblock content %}

@@ -1,0 +1,84 @@
+{% extends "studentportal/base.html" %}
+
+{% block content %}
+{% if assignment %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>{{assignment.name}} - Intensity: {{assignment.intensity}} - Grade: {{ grade }}</h2><br>
+    </div>
+    <br> <br>
+    <div class="row justify-content-center">
+        <h4>Criteria:</h4><br>
+    </div>
+    <div class="row justify-content-center">
+        <ul class="list-group-flush">
+            <li class="list-group-item"></li>
+            {% for criterion in assignment.criteria %}
+                <li class="list-group-item" style="padding: 2vh 50vh;"> {{ criterion }} </li>
+            {% endfor %}
+            <li class="list-group-item"></li>
+        </ul>
+    </div>
+    <br><br>
+
+    {% if submission == None %}
+        <form action="#" method="POST" class="w-50">
+            {% csrf_token %}
+                <div class="form-group col-md-12 col-md-offset-4">
+                    {{ form.as_p }}
+                </div>
+            <button type="submit" class="bbtn" name="submitbtn">Submit</button>
+            <div></div>
+        </form>
+    {% else %}
+        <!--submission does exist; display it -->
+
+        <form class="w-50" style="margin-bottom: 30px">
+            <h2 class="margin-top-left">Your Response:</h2>
+            <p class="margin-top-left">
+                {{submission.content.0}}
+            </p>
+        </form>
+
+    {% endif %}
+
+    {% if disputes %}
+    <br> <br>
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">This Assignment's Disputes:</h4><br>
+        </div>
+        <button onclick="location.href='/student/disputes/new/{{assignment.ID}}'" class="bbtn left-align" name="disputecreate">Create</button>
+    </div>
+    <div class="row justify-content-center">
+        <ul class="list-group-flush">
+            <li class="list-group-item"></li>
+            {% for dispute in disputes %}
+            <a href="{% url 'student-viewdispute' dispute.ID %}" class="list-group-item" style="padding: 2vh 50vh;">{{ dispute.preview }}</a>
+            {% endfor %}
+            <li class="list-group-item"></li>
+        </ul>
+    </div>
+    {% else %}
+
+    <br> <br>
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">There are no disputes to view.</h4><br>
+        </div>
+        <button onclick="location.href='/student/disputes/new/{{assignmentID}}'" class="bbtn left-align" name="disputecreate">Create</button>
+    </div>
+
+    {% endif %}
+
+{% else %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4 class="centred error">{{error}}</h4>
+    </div>
+    
+{% endif %}
+
+    
+
+{% endblock content %}

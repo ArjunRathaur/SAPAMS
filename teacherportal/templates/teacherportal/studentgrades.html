@@ -1,0 +1,25 @@
+{% extends "teacherportal/base.html" %}
+
+{% block content %}
+{% if assignmentSubmissionsSorted %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4>{{studentName}}'s Grades - Average: {{average}}</h4> <br/>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <ul class="list-group-flush">
+            <li class="list-group-item"></li>
+            {% for assignment in assignmentSubmissionsSorted %}
+            <li class="list-group-item" style="padding: 2vh 50vh;"> {{assignment.1.grade|ljust:"3" }}  &nbsp - &nbsp {{assignment.0.name}} </li>
+            {% endfor %}
+            <li class="list-group-item"></li>
+        </ul>
+    </div>
+{% else %}
+    <h2 class="centred">This student does not currently have any grades.</h2>
+{% endif %}
+
+    
+
+{% endblock content %}

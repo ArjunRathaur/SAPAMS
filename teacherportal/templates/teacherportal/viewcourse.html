@@ -1,0 +1,39 @@
+{% extends "teacherportal/base.html" %}
+
+{% block content %}
+{% if course %}
+    <br><br>
+    <div class="row justify-content-center">
+        <div class="my-auto">
+            <h4 class="center-to-button">Assignments - {{course.courseCode}} {{course.courseName}}</h4><br>
+        </div>
+        <button onclick="location.href='/teacher/assignments/new/{{course.ID}}'" class="bbtn left-align" name="coursecreate">Create</button>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <ul class="list-group">
+            {% for assignment in assignments %}
+                <div class="row justify-content-center">
+                    <div class="my-auto">
+                        <a href="{% url 'teacher-viewassignment' assignment.ID %}" class="list-group-item" style="padding: 2vh 50vh;">
+                            {{ assignment.name }}
+                        </a>
+                    </div>
+                    <button onclick="location.href='/teacher/assignments/delete/{{assignment.ID}}'" class="dbtn left-align" name="assignmentdelete">Delete</button>
+                </div>
+                
+            {% endfor %}
+        </ul>
+    </div>
+
+{% else %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4 class="centred error">{{error}}</h4>
+    </div>
+    
+{% endif %}
+
+    
+
+{% endblock content %}

@@ -1,9 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        <h1>student home page!</h1>
-    </body>
-</html>
+{% extends "studentportal/base.html" %}
+
+{% block content %}
+{% if courses %}
+    <br><br>
+    <div class="row justify-content-center">
+        <h4>Courses</h4> <br/>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <ul class="list-group">
+            {% for course in courses %}
+                <a href="{% url 'student-viewcourse' course.ID %}" class="list-group-item" style="padding: 2vh 50vh;">{{ course.courseName }}</a>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <h2 class="centred">You are not currently in any classes.</h2>
+{% endif %}
+
+    
+
+{% endblock content %}

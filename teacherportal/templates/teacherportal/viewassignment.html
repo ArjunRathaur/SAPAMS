@@ -1,0 +1,43 @@
+{% extends "teacherportal/base.html" %}
+
+{% block content %}
+
+    <br><br>
+    <div class="row justify-content-center">
+        <h2>{{assignment.name}} - Intensity: {{assignment.intensity}} - Grade: {{ grade }}</h2><br>
+    </div>
+    <br> <br>
+    <div class="row justify-content-center">
+        <h4>Criteria:</h4><br>
+    </div>
+    <div class="row justify-content-center">
+        <ul class="list-group-flush">
+            <li class="list-group-item"></li>
+            {% for criterion in assignment.criteria %}
+                <li class="list-group-item" style="padding: 2vh 50vh;"> {{ criterion }} </li>
+            {% endfor %}
+            <li class="list-group-item"></li>
+        </ul>
+    </div>
+    <br><br>
+    
+    <div class="row justify-content-center">
+        <h4>Submissions</h4><br>
+    </div>
+
+    <div class="row justify-content-center">
+        <ul class="list-group">
+            {% for submission in submissions %}
+                <div class="row justify-content-center">
+                    <div class="my-auto">
+                        <a href="{% url 'teacher-viewsubmission' submission.ID %}" class="list-group-item" style="padding: 2vh 50vh;">
+                            {{submission.displayname}}
+                        </a>
+                    </div>
+                </div>
+                
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock content %}

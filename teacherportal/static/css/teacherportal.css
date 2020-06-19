@@ -1,0 +1,251 @@
+  body, html {
+    margin: 0;
+    height: 100%;
+    font-family: "Segoe UI", Georgia, "Times New Roman", Times, serif;
+  }
+
+  ul {
+    padding-inline-start: 0 !important;
+  }
+  
+  p {
+    padding-top: 1em;
+  }
+
+  form {
+    border-radius: 8px;
+    margin: 0 auto;
+    border: 1px solid #444;
+  }
+
+  /* IDS */
+  
+  #error {
+    color: #e74c3c;
+  }
+
+  .error {
+    color: #e74c3c;
+  }
+
+  #intro {
+    position: fixed;
+    z-index: 1;
+    width: 800px;
+    height: 300px;
+    top: 30%;
+    left: 50%;
+    margin-top: -130px; /* Negative half of height. */
+    margin-left: -415px; /* Negative half of width. */
+    text-align: center;
+    color: white;
+  }
+  
+  #intro h2 {
+    font-size: 120px;
+    margin: 10px 0;
+  }
+  
+  h3 {
+    font-size: 32px !important;
+    margin: 30px;
+    padding: 2vh;
+    color: #fff;
+    display: inline-block;
+  }
+
+  #navbar h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  #intro p {
+    margin: 5px 0;
+    font-size: 20px;
+  }
+  
+  #intro .btn {
+    margin: 2vh;
+  }
+  
+  /* CLASSES */
+  
+  /* Buttons */
+  .abtn {
+    border: 1px solid #fff;
+    border-radius: 8px;
+    background: none;
+    padding: 10px 40px;
+    margin: 2vh;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.6s;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .abtn:hover {
+    color: #0abde3;
+  }
+  
+  .abtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #fff;
+    z-index: -1;
+    transition: 0.6s;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+  }
+  
+  .abtn:hover::before {
+    height: 180%;
+  }
+  
+  .bbtn {
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: none;
+    padding: 10px 40px;
+    margin: 2vh;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.6s;
+    color: #444;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .bbtn:hover {
+    color: #0abde3;
+  }
+  
+  .bbtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #444;
+    z-index: -1;
+    transition: 0.6s;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+  }
+  
+  .bbtn:hover::before {
+    height: 180%;
+  }
+
+  .dbtn {
+    border: 1px solid #e74c3c;
+    border-radius: 8px;
+    background: none;
+    padding: 12px 20px;
+    margin: 2vh;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.6s;
+    color: #e74c3c;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .dbtn:hover {
+    color: #fff;
+  }
+  
+  .dbtn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: #e74c3c;
+    z-index: -1;
+    transition: 0.6s;
+    bottom: 0;
+    border-radius: 50% 50% 0 0;
+  }
+  
+  .dbtn:hover::before {
+    height: 180%;
+  }
+
+  /* Landing specific */
+  .overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.3;
+  }
+  
+  .background {
+    background-image: url('../images/teacher-login.jpg');
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .centered {
+    margin: 0 auto;
+    width: 0%;
+    left: 50%;
+    transform: translateX(-15vh);
+  }
+
+  .transparent-input {
+    background-color: transparent !important;
+    border: 1px solid #444 !important;
+    color: #444 !important;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color:#444 !important;
+    opacity: 1 !important; /* Firefox */
+  }
+
+  /* The navigation bar */
+.navbar {
+    overflow: hidden;
+    background-color: #0abde3;
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    text-align: center;
+  }
+  
+  /* Links inside the navbar */
+  .left-align {
+    float: left;
+  }
+
+  .right-align {
+      float: right;
+  }
+  
+  /* Main content */
+  .content {
+    margin: 0 5vh; /* Add a top margin to avoid content overlay */
+  }
+
+  .margin-top-left {
+    margin: 20px 20px !important;
+  }
+
+  .center-to-button {
+    padding-top: 2vh !important; 
+    margin-top: 5px !important;
+    padding-left: 2vh !important;
+  }
+
